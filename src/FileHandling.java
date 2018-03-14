@@ -55,10 +55,10 @@ public class FileHandling {
             for(String p : progExt){
                 if (f.getName().contains("." + p)) {
                     System.out.println("Moving file: " + f.getName() + " to Dev");
-                    f.renameTo(new File(s + "/Dev/" + f.getName()));
+                    f.renameTo(new File(s + "/Programmer/" + f.getName()));
                 }
             }
-            for(String dev : progExt){
+            for(String dev : devExt){
                 if (f.getName().contains("." + dev)) {
                     System.out.println("Moving file: " + f.getName() + " to Programmer");
                     f.renameTo(new File(s + "/Dev/" + f.getName()));
