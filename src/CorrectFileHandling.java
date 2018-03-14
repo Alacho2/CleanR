@@ -47,6 +47,10 @@ public class CorrectFileHandling {
         }
     }
 
+    public void changes(){
+
+    }
+
     public List<String> fileList(){
         fileNames = new ArrayList<>();
         try(DirectoryStream<Path> directoryStream = Files.newDirectoryStream(DIRECTORY)) {
