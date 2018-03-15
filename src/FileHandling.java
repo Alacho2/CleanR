@@ -12,7 +12,7 @@ public class FileHandling {
 
     public static final String DIRECTORY = String.valueOf(Paths.get(System.getProperty("user.home") + "/Desktop"));
     static List<String> docuExt;
-    static List<String> picExt;
+    static List<String> mediaExt;
     static List<String> progExt;
     static List<String> devExt;
 
@@ -21,7 +21,8 @@ public class FileHandling {
     File listOfFiles[];
 
     String s;
-    String picVid = "PicVid";
+
+    String media = "Media";
     String doc = "Documents";
     String programs = "Programs";
     String develop = "Dev";
@@ -40,7 +41,7 @@ public class FileHandling {
         makeFolder.mkdir();
         subFolder(programs);
         subFolder(doc);
-        subFolder(picVid);
+        subFolder(media);
         subFolder(develop);
     }
 
@@ -52,10 +53,10 @@ public class FileHandling {
                     f.renameTo(new File(s + "/"+doc+"/" + f.getName()));
                 }
             }
-            for(String i : picExt){
+            for(String i : mediaExt){
                 if (f.getName().contains("." + i)) {
-                    System.out.println("Moving file: " + f.getName() + " to " + picVid);
-                    f.renameTo(new File(s + "/"+picVid+"/" + f.getName()));
+                    System.out.println("Moving file: " + f.getName() + " to " + media);
+                    f.renameTo(new File(s + "/"+ media +"/" + f.getName()));
                 }
             }
             for(String p : progExt){
@@ -82,18 +83,18 @@ public class FileHandling {
         String curTime = LocalDateTime.now().toString();
 
         curTime = curTime.replace(":", ".");
-        curTime = "Skrivebord" + curTime;
+        curTime = "Desktop" + curTime;
 
         return "/" + curTime;
     }
 
     public static void makeExtList(){
         docuExt = new ArrayList<>();
-        picExt = new ArrayList<>();
+        mediaExt = new ArrayList<>();
         progExt = new ArrayList<>();
         devExt = new ArrayList<>();
-        Collections.addAll(docuExt, "doc", "txt", "pdf", "docx", "log", "pages", "rtf");
-        Collections.addAll(picExt, "png", "jpg", "psd", "gif", "mp4", "mkv", "flv", "avi");
+        Collections.addAll(docuExt, "doc", "txt", "pdf", "docx", "log", "pages", "rtf", "xls", "xlsx");
+        Collections.addAll(mediaExt, "png", "jpg", "psd", "gif", "mp4", "mkv", "flv", "avi", "pxm");
         Collections.addAll(progExt, "exe", "dmg", "msi", "app", "jar");
         Collections.addAll(devExt, "html", "css", "php", "java", "js");
     }
