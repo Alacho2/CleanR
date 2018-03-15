@@ -8,6 +8,8 @@ import java.util.List;
 
 public class FileHandling {
 
+
+
     public static final String DIRECTORY = String.valueOf(Paths.get(System.getProperty("user.home") + "/Desktop"));
     static List<String> docuExt;
     static List<String> picExt;
@@ -19,6 +21,10 @@ public class FileHandling {
     File listOfFiles[];
 
     String s;
+    String picVid = "PicVid";
+    String doc = "Documents";
+    String programs = "Programs";
+    String develop = "Dev";
 
     public FileHandling() {
         folder = new File(DIRECTORY);
@@ -32,36 +38,36 @@ public class FileHandling {
         s = DIRECTORY + setFolderName();
         makeFolder = new File(s);
         makeFolder.mkdir();
-        subFolder("Programmer");
-        subFolder("Dokumenter");
-        subFolder("Bilder");
-        subFolder("Dev");
+        subFolder(programs);
+        subFolder(doc);
+        subFolder(picVid);
+        subFolder(develop);
     }
 
     public void cleanUp(){
         for (File f : listOfFiles){
             for(String d : docuExt) {
                 if (f.getName().contains("." + d)) {
-                    System.out.println("Moving file: " + f.getName() + " to Dokumenter");
-                    f.renameTo(new File(s + "/Dokumenter/" + f.getName()));
+                    System.out.println("Moving file: " + f.getName() + " to " + doc);
+                    f.renameTo(new File(s + "/"+doc+"/" + f.getName()));
                 }
             }
             for(String i : picExt){
                 if (f.getName().contains("." + i)) {
-                    System.out.println("Moving file: " + f.getName() + " to Bilder");
-                    f.renameTo(new File(s + "/Bilder/" + f.getName()));
+                    System.out.println("Moving file: " + f.getName() + " to " + picVid);
+                    f.renameTo(new File(s + "/"+picVid+"/" + f.getName()));
                 }
             }
             for(String p : progExt){
                 if (f.getName().contains("." + p)) {
-                    System.out.println("Moving file: " + f.getName() + " to Dev");
-                    f.renameTo(new File(s + "/Programmer/" + f.getName()));
+                    System.out.println("Moving file: " + f.getName() + " to " + programs);
+                    f.renameTo(new File(s + "/"+programs+"/" + f.getName()));
                 }
             }
             for(String dev : devExt){
                 if (f.getName().contains("." + dev)) {
-                    System.out.println("Moving file: " + f.getName() + " to Programmer");
-                    f.renameTo(new File(s + "/Dev/" + f.getName()));
+                    System.out.println("Moving file: " + f.getName() + " to " + develop);
+                    f.renameTo(new File(s + "/"+develop+"/" + f.getName()));
                 }
             }
         }
@@ -87,7 +93,7 @@ public class FileHandling {
         progExt = new ArrayList<>();
         devExt = new ArrayList<>();
         Collections.addAll(docuExt, "doc", "txt", "pdf", "docx", "log", "pages", "rtf");
-        Collections.addAll(picExt, "png", "jpg", "psd", "gif");
+        Collections.addAll(picExt, "png", "jpg", "psd", "gif", "mp4", "mkv", "flv", "avi");
         Collections.addAll(progExt, "exe", "dmg", "msi", "app", "jar");
         Collections.addAll(devExt, "html", "css", "php", "java", "js");
     }
