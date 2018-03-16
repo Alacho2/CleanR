@@ -8,13 +8,16 @@ import java.util.List;
 
 public class FileHandling {
 
-
-
     public static final String DIRECTORY = String.valueOf(Paths.get(System.getProperty("user.home") + "/Desktop"));
     static List<String> docuExt;
     static List<String> mediaExt;
     static List<String> progExt;
     static List<String> devExt;
+
+    /**
+     * Implement hashMap for file extensions. Use extension as key and path as value.
+     * If it hits on value, place on path.
+     */
 
     File folder;
     File makeFolder;
@@ -60,7 +63,10 @@ public class FileHandling {
                 }
             }
             for(String p : progExt){
-                if (f.getName().contains("." + p)) {
+                if(f.getName().contains("CleanR.jar")){
+                    continue;
+                }
+                else if (f.getName().contains("." + p)) {
                     System.out.println("Moving file: " + f.getName() + " to " + programs);
                     f.renameTo(new File(s + "/"+programs+"/" + f.getName()));
                 }
