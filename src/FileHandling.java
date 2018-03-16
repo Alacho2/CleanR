@@ -50,31 +50,34 @@ public class FileHandling {
 
     public void cleanUp(){
         for (File f : listOfFiles){
-            for(String d : docuExt) {
-                if (f.getName().contains("." + d)) {
-                    System.out.println("Moving file: " + f.getName() + " to " + doc);
-                    f.renameTo(new File(s + "/"+doc+"/" + f.getName()));
+            if(f.isDirectory()){
+                continue;
+            } else {
+                for (String d : docuExt) {
+                    if (f.getName().contains("." + d)) {
+                        System.out.println("Moving file: " + f.getName() + " to " + doc);
+                        f.renameTo(new File(s + "/" + doc + "/" + f.getName()));
+                    }
                 }
-            }
-            for(String i : mediaExt){
-                if (f.getName().contains("." + i)) {
-                    System.out.println("Moving file: " + f.getName() + " to " + media);
-                    f.renameTo(new File(s + "/"+ media +"/" + f.getName()));
+                for (String i : mediaExt) {
+                    if (f.getName().contains("." + i)) {
+                        System.out.println("Moving file: " + f.getName() + " to " + media);
+                        f.renameTo(new File(s + "/" + media + "/" + f.getName()));
+                    }
                 }
-            }
-            for(String p : progExt){
-                if(f.getName().contains("CleanR.jar")){
-                    continue;
+                for (String p : progExt) {
+                    if (f.getName().contains("CleanR.jar")) {
+                        continue;
+                    } else if (f.getName().contains("." + p)) {
+                        System.out.println("Moving file: " + f.getName() + " to " + programs);
+                        f.renameTo(new File(s + "/" + programs + "/" + f.getName()));
+                    }
                 }
-                else if (f.getName().contains("." + p)) {
-                    System.out.println("Moving file: " + f.getName() + " to " + programs);
-                    f.renameTo(new File(s + "/"+programs+"/" + f.getName()));
-                }
-            }
-            for(String dev : devExt){
-                if (f.getName().contains("." + dev)) {
-                    System.out.println("Moving file: " + f.getName() + " to " + develop);
-                    f.renameTo(new File(s + "/"+develop+"/" + f.getName()));
+                for (String dev : devExt) {
+                    if (f.getName().contains("." + dev) || f.canExecute()) {
+                        System.out.println("Moving file: " + f.getName() + " to " + develop);
+                        f.renameTo(new File(s + "/" + develop + "/" + f.getName()));
+                    }
                 }
             }
         }
