@@ -34,7 +34,7 @@ public class FileHandling {
         folder = new File(DIRECTORY);
         listOfFiles = folder.listFiles();
         makeExtList();
-        makeFolderStructure();
+        //makeFolderStructure();
         cleanUp();
     }
 
@@ -49,6 +49,9 @@ public class FileHandling {
     }
 
     public void cleanUp(){
+         /*for(File f : listOfFiles){
+            System.out.println(f);
+        }*/
         for (File f : listOfFiles){
             if(f.isDirectory()){
                 continue;
@@ -104,7 +107,7 @@ public class FileHandling {
         devExt = new ArrayList<>();
         Collections.addAll(docuExt, "doc", "txt", "pdf", "docx", "log", "pages", "rtf", "xls", "xlsx");
         Collections.addAll(mediaExt, "png", "jpg", "psd", "gif", "mp4", "mkv", "flv", "avi", "pxm");
-        Collections.addAll(progExt, "exe", "dmg", "msi", "app", "jar");
+        Collections.addAll(progExt, "exe", "dmg", "msi", "app", "jar", "lnk");
         Collections.addAll(devExt, "html", "css", "php", "java", "js");
     }
 }
